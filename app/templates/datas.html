@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Datas Marcadas</title>
+    <!-- Inclua o link para o arquivo CSS do Tailwind CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+</head>
+<body class="bg-gray-100">
+    <div class="flex justify-center mt-8">
+        <a href="{{ url_for('inicio') }}" class="btn mr-4 bg-green-500 text-white p-2">Home</a> <!-- Botão Home -->
+        <a href="{{ url_for('post') }}" class="btn mr-4 bg-green-500 text-white p-2">Marcar Data</a> <!-- Botão Marcar Data -->
+        <a href="{{ url_for('datas') }}" class="btn mr-4 bg-green-500 text-white p-2">Ver Datas</a> <!-- Botão Ver Datas -->
+    </div>
+    <div class="container mx-auto px-4 py-8">
+        <h1 class="text-2xl font-bold mb-4">Datas Marcadas</h1>
+        <table class="min-w-full bg-white">
+            <thead>
+                <tr>
+                    <th class="py-2 px-4 bg-gray-200">Nome</th>
+                    <th class="py-2 px-4 bg-gray-200">Data Marcada</th>
+                    <th class="py-2 px-4 bg-gray-200">Funções</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for nome, dataMarcada in dados %}
+                <tr>
+                    <td class="border px-4 py-2">{{ nome }}</td>
+                    <td class="border px-4 py-2">{{ dataMarcada }}</td>
+                    <td class="border px-4 py-2">
+                        <div class="flex space-x-2">
+                            <!-- Botão de editar -->
+                            <form action="{{ url_for('edit_date') }}" method="post" class="inline">
+                                <input type="hidden" name="user" id="user" value="{{ nome }}">
+                                <input type="hidden" name="date" id="date" value="{{ dataMarcada }}">
+                                <button type="submit" class="focus:outline-none">
+                                    <img src="/static/img/editIcon.png" class="w-8 h-8" alt="Editar">
+                                </button>
+                            </form>
+                            <!-- Botão de excluir -->
+                            <form action="{{ url_for('delete_date') }}" method="post" class="inline">
+                                <input type="hidden" name="user" id="user" value="{{ nome }}">
+                                <input type="hidden" name="date" id="date" value="{{ dataMarcada }}">
+                                <button type="submit" class="focus:outline-none">
+                                    <img src="/static/img/trashIcon.png" class="w-8 h-8" alt="Excluir">
+                                </button>
+                            </form>
+                        </div>
+                    </td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+</body>
+</html>

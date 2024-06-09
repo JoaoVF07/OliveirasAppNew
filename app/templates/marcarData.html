@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Formulário</title>
+    <!-- Inclua o link para o arquivo CSS do Tailwind CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+</head>
+<body class="bg-gray-100">
+    <div class="flex justify-center mt-8">
+        <a href="{{ url_for('inicio') }}" class="btn mr-4 bg-green-500 text-white p-2">Home</a> <!-- Botão Home -->
+        <a href="{{ url_for('post') }}" class="btn mr-4 bg-green-500 text-white p-2">Marcar Data</a> <!-- Botão Marcar Data -->
+        <a href="{{ url_for('datas') }}" class="btn mr-4 bg-green-500 text-white p-2">Ver Datas</a> <!-- Botão Ver Datas -->
+    </div>
+    <div class="container mx-auto px-4 py-8">
+        <form action="{{ url_for('post') }}" method="post" class="max-w-sm mx-auto bg-white shadow-md rounded px-8 pt-6 pb-8 mb-4">
+            <div class="mb-4">
+                <label for="data" class="block text-gray-700 text-sm font-bold mb-2">Data:</label>
+                <input type="date" id="data" name="data" class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline">
+            </div>
+            <div class="flex items-center justify-between">
+                <button type="submit" class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline">Marcar</button>
+            </div>
+        </form>
+    </div>
+</body>
+</html>

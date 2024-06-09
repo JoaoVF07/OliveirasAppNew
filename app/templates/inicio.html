@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>INICIO</title>
+    <!-- Include the link to the Tailwind CSS file -->
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+</head>
+<body class="bg-gray-100">
+    <!-- Menu/Header -->
+    <div class="bg-green-500 text-white py-4 px-6 flex justify-between items-center">
+        <h1 class="text-xl flex items-center">
+            <img src="/static/img/oliva.png" alt="img" class="w-8 h-auto mr-2">
+            OliveirasApp
+        </h1>
+        <div>
+            <a href="#" class="text-white-500 mr-4">{{ nome }}</a> <!-- Nome em azul -->
+            <a href="{{ url_for('login') }}" class="text-red-500">Sair</a> <!-- Sair em vermelho -->
+        </div>
+    </div>
+    
+    <!-- Botões -->
+    <div class="flex justify-center mt-8">
+        <a href="{{ url_for('inicio') }}" class="btn mr-4 bg-green-500 text-white p-2">Home</a> <!-- Botão Home -->
+        <a href="{{ url_for('post') }}" class="btn mr-4 bg-green-500 text-white p-2">Marcar Data</a> <!-- Botão Marcar Data -->
+        <a href="{{ url_for('datas') }}" class="btn mr-4 bg-green-500 text-white p-2">Ver Datas</a> <!-- Botão Ver Datas -->
+    </div>
+
+    <div class="container mx-auto px-4 py-8">
+        <h1 class="text-2xl font-bold mb-4">Datas Marcadas</h1>
+        <h4>Confira abaixo as <strong class="text-green-500">proximas 5 datas</strong></h4>
+        <br>
+        <table class="min-w-full bg-white">
+            <thead>
+                <tr>
+                    <th class="py-2 px-4 bg-gray-200">Nome</th>
+                    <th class="py-2 px-4 bg-gray-200">Data Marcada</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for nome, dataMarcada in dados %}
+                <tr>
+                    <td class="border px-4 py-2">{{ nome }}</td>
+                    <td class="border px-4 py-2">{{ dataMarcada }}</td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+</body>
+</html>
